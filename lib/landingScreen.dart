@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newsapp/user/model/userModel.dart';
 import 'package:newsapp/user/repository/authRepo.dart';
 import 'package:newsapp/user/view/homeScreen.dart';
 import 'package:newsapp/util/widgets/loadingOverLay.dart';
+
+import 'user/viewModel/userViewModel.dart';
 
 class LandingScreen extends StatefulWidget {
   @override
@@ -24,13 +27,10 @@ class _LandingScreenState extends State<LandingScreen> {
                 loading = true;
               });
 
-              bool error = await AuthRepo.loginUser();
+              UserModel? user = await AuthRepo.loginUser();
+              UserViewModel.setUser(user!);
 
-              if(error){
-                Get.rawSnackbar(title: 'Error',message: 'Failed to login');
-              }else{
-                Get.offAll(()=>HomeScreen());
-              }
+              Get.offAll(()=>HomeScreen());
 
               setState(() {
                 loading = false;

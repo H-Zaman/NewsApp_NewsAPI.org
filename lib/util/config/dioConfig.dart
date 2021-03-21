@@ -3,12 +3,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class DioConfig{
 
-  static Dio getClient ([bool includeOptions = true]) {
+  static Dio getClientOrg ([bool includeOptions = true]) {
     Dio dio = new Dio();
     if(includeOptions){
       dio.options = BaseOptions(
         headers: {
-          'X-Api-Key' : env['NEWS_API_KEY']
+          'X-Api-Key' : env['NEWS_API_KEY_1']
         }
       );
       return dio;

@@ -64,7 +64,7 @@ class TopSection extends StatelessWidget {
                 bottomRight: Radius.circular(30),
               ),
             ),
-            padding: EdgeInsets.fromLTRB(25, Get.height * .22, 25, 25),
+            padding: EdgeInsets.fromLTRB(25, Get.height * .22, 25, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

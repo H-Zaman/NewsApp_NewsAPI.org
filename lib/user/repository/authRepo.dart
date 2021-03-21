@@ -1,20 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:newsapp/user/model/userModel.dart';
-import 'package:newsapp/user/viewModel/userViewModel.dart';
 import 'package:newsapp/util/config/dioConfig.dart';
 
 class AuthRepo{
-  static Future<bool> loginUser() async{
+  static Future<UserModel?> loginUser() async{
     try{
-      final client = DioConfig.getClient(false);
+      final client = DioConfig.getClientOrg(false);
       Response response = await client.get(
         DioConfig.getAuthEndPoint()
       );
-      UserViewModel.setUser(UserModel.fromJson(response.data['results'][0]));
-      return false;
+
+      return UserModel.fromJson(response.data['results'][0]);
     }catch(e){
       print(e.toString());
-      return true;
+      return null;
     }
   }
 }

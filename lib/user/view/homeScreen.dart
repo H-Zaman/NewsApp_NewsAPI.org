@@ -33,10 +33,11 @@ class HomeBody extends StatelessWidget {
   static RxInt pageIndex = 0.obs;
   static changeIndex(int? index) => pageIndex.value = index!;
 
-  final _screens = [HomeViewScreen(), DiscoverScreen(), ProfileScreen()];
+  final _screens = [HomeViewScreen(), DiscoverScreen()/*, ProfileScreen()*/];
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: (){
         bool isOpen = HomeScreen.drawerController.isOpen!();
@@ -48,15 +49,19 @@ class HomeBody extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          leading: Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-            color: Colors.black12,
-            child: IconButton(
-              onPressed: (){
-                HomeScreen.drawerController.toggle!();
-              },
-              icon: Icon(
-                CupertinoIcons.line_horizontal_3,
+          leadingWidth: 80,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+              color: Colors.black12,
+              child: IconButton(
+                onPressed: (){
+                  HomeScreen.drawerController.toggle!();
+                },
+                icon: Icon(
+                  CupertinoIcons.line_horizontal_3,
+                ),
               ),
             ),
           ),
@@ -69,6 +74,12 @@ class HomeBody extends StatelessWidget {
         bottomNavigationBar: Obx(()=>BottomNavigationBar(
           currentIndex: HomeBody.pageIndex.value,
           onTap: HomeBody.changeIndex,
+          unselectedLabelStyle: TextStyle(
+            fontFamily: 'R'
+          ),
+          selectedLabelStyle: TextStyle(
+            fontFamily: 'R'
+          ),
           items: [
             BottomNavigationBarItem(
                 icon: Icon(
@@ -82,12 +93,12 @@ class HomeBody extends StatelessWidget {
                 ),
                 label: 'Discover'
             ),
-            BottomNavigationBarItem(
+        /*    BottomNavigationBarItem(
                 icon: Icon(
                     Icons.person_outline
                 ),
                 label: 'Profile'
-            ),
+            ),*/
           ],
         )),
       ),
